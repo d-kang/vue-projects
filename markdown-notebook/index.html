@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Markdown Notebook</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+
+  <div id="notebook">
+    <section class="main">
+      <textarea v-model="content" name="" id="" cols="30" rows="10" placeholder="This is a note."></textarea>
+    </section>
+    <aside class="preview" v-html="notePreview"></aside>
+
+  </div>
+
+  <script src="https://unpkg.com/marked"></script>
+  <script src="main.js"></script>
+
+</body>
+</html>
