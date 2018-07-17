@@ -2,6 +2,7 @@ const data = function() {
   return {
     notes: helpers.getNotes(),
     selectedId: helpers.getId(),
+    noteNumber: 0,
   }
 }
 
@@ -15,6 +16,21 @@ const computed = {
   selectedNote() {
     return this.notes.find(n => n.id === this.selectedId)
   },
+  sortedNotes() {
+    return this.notes
+      .sort((a, b) => {
+        return a.created - b.created
+      })
+      .sort((a, b) => {
+        if (a.favorite === b.favorite) {
+          return 0
+        } else if (a.favorite) {
+          return -1
+        } else {
+          return 1
+        }
+      })
+  }
 }
 
 const watch = {
@@ -25,15 +41,30 @@ const watch = {
   selectedId: 'saveId',
 }
 
+const created = function() {
+  this.setNoteNumber()
+}
+
 const methods = {
+  setNoteNumber() {
+    let last = -1;
+    this.notes.forEach(n => {
+      if (n.id > last) {
+        last = n.id
+      }
+    })
+    this.noteNumber = last + 1
+  },
   addNote() {
     const note = {
-      id: Math.ceil(Math.random() * 10000),
+      id: this.noteNumber,
       title: `New Note ${this.notes.length}`,
       content: '** Hi! ** This notebook is using *markdown* for formatting!',
       created: new Date(),
       favorite: false
     }
+    this.selectedId = this.noteNumber
+    this.noteNumber++
     this.title = ''
     this.notes.push(note)
   },
@@ -55,10 +86,10 @@ const methods = {
     this.selectedId = null
   },
   favoriteNote() {
-    // const note = this.notes.find(n => n.id === this.selectedId)
-    // note.favorite = !note.favorite
     this.selectedNote.favorite = !this.selectedNote.favorite
-    // this.selectedNote.favorite = this.selectedNote.favorite ^ true
+  },
+  favoriteNote2(n) {
+    n.favorite = !this.selectedNote.favorite
   },
 }
 
@@ -69,6 +100,7 @@ const options = {
   computed,
   watch,
   methods,
+  created,
 }
 
 Vue.config.productionTip = false

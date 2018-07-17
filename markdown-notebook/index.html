@@ -21,15 +21,25 @@
       <div class="notes">
         <div
           class="note"
-          v-for="(n, i) in notes"
+          v-for="(n, i) in sortedNotes"
           @click="selectNote(n.id)"
           :class="{ selected: n === selectedNote }"
+           v-bind:n="n"
+           v-bind:index="i"
+           v-bind:key="n.id"
         >
           {{n.title}}
-          <button @click="favoriteNote" style="float:right;">
-            <i class="material-icons">{{ notes[i].favorite ? 'star' : 'star_border' }}</i>
-          </button>
-
+          <span v-if="n.id === selectedId" @click="favoriteNote" style="float:right">
+            <i v-if="n.favorite" class="material-icons">
+              star
+            </i>
+            <i v-else class="material-icons">
+              star_border
+            </i>
+          </span>
+          <i v-else-if="n.favorite" class="material-icons" style="float:right">
+            star
+          </i>
         </div>
       </div>
     </aside>
