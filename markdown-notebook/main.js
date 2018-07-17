@@ -17,19 +17,17 @@ const computed = {
     return this.notes.find(n => n.id === this.selectedId)
   },
   sortedNotes() {
-    return this.notes
-      .sort((a, b) => {
-        return a.created - b.created
-      })
-      .sort((a, b) => {
-        if (a.favorite === b.favorite) {
-          return 0
-        } else if (a.favorite) {
-          return -1
-        } else {
-          return 1
-        }
-      })
+    const favorites = []
+    const nonFavorites = []
+
+    this.notes.forEach(n => {
+      n.favorite ? favorites.push(n) : nonFavorites.push(n)
+    })
+
+    favorites.sort((a, b) => a.id - b.id)
+    nonFavorites.sort((a, b) => a.id - b.id)
+
+    return [...favorites, ...nonFavorites]
   }
 }
 
@@ -87,9 +85,6 @@ const methods = {
   },
   favoriteNote() {
     this.selectedNote.favorite = !this.selectedNote.favorite
-  },
-  favoriteNote2(n) {
-    n.favorite = !this.selectedNote.favorite
   },
 }
 
