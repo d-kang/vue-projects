@@ -1,12 +1,16 @@
-const data = function() {
-  return {
-    notes: [],
-    selectedId: null,
-  }
+const getNotes = () => {
+  return JSON.parse(localStorage.getItem('notes')) || []
 }
 
-const created = function() {
-  this.loadContent()
+const getId = () => {
+  return parseInt(window.localStorage.getItem('id')) || null
+}
+
+const data = function() {
+  return {
+    notes: getNotes(),
+    selectedId: getId(),
+  }
 }
 
 const computed = {
@@ -22,22 +26,14 @@ const computed = {
 }
 
 const watch = {
-  content: 'saveNote',
-  notes: 'saveNotes',
+  notes: {
+    handler: 'saveNotes',
+    deep: true,
+  },
+  selectedId: 'saveId',
 }
 
 const methods = {
-  saveNote(val, oldVal) {
-    console.log('new note:', val, 'old note:', oldVal)
-
-    localStorage.setItem('content', val)
-  },
-  loadContent() {
-    const content = localStorage.getItem('content')
-    const notes = JSON.parse(localStorage.getItem('notes'))
-    this.content = content || 'You can write in **markdown**'
-    this.notes = notes || []
-  },
   addNote() {
     const note = {
       id: Math.ceil(Math.random() * 10000),
@@ -50,6 +46,7 @@ const methods = {
     this.notes.push(note)
   },
   saveNotes(val, oldVal) {
+    console.log('save note ran')
     localStorage.setItem('notes', JSON.stringify(val))
   },
   purgeStorage()  {
@@ -58,7 +55,10 @@ const methods = {
   },
   selectNote(id) {
     this.selectedId = id
-  }
+  },
+  saveId() {
+    window.localStorage.setItem('id', this.selectedId)
+  },
 }
 
 const options = {
@@ -68,7 +68,6 @@ const options = {
   computed,
   watch,
   methods,
-  created,
 }
 
 Vue.config.productionTip = false

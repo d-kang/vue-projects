@@ -30,15 +30,15 @@
       </div>
     </aside>
 
-    <section class="main">
-      <textarea
-        v-if="selectedNote"
-        v-model="selectedNote.content"
-        placeholder="This is a note.">
-      </textarea>
-    </section>
-    <aside class="preview" v-html="notePreview"></aside>
-    <!-- <button @click="purgeStorage">purge</button> -->
+    <template v-if="selectedNote">
+      <section class="main">
+        <textarea v-model="selectedNote.content" placeholder="This is a note.">
+            </textarea>
+      </section>
+      <aside class="preview" v-html="notePreview"></aside>
+    </template>
+
+    <button @click="purgeStorage">purge</button>
   </div>
 
   <script src="https://unpkg.com/marked"></script>
