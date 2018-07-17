@@ -1,9 +1,13 @@
-const data = function() {
+const initialState = () => {
   return {
     notes: helpers.getNotes(),
     selectedId: helpers.getId(),
     noteNumber: 0,
   }
+}
+
+const data = function() {
+  return initialState()
 }
 
 const filters = {
@@ -86,9 +90,19 @@ const methods = {
   saveNotes(val, oldVal) {
     localStorage.setItem('notes', JSON.stringify(val))
   },
+  resetWindow() {
+    this.notes = helpers.getNotes()
+    this.selectedId = helpers.getId()
+    this.noteNumber = 0
+  },
   purgeStorage()  {
-    localStorage.removeItem('content')
-    localStorage.removeItem('notes')
+    if (confirm('Are you sure you want to delete all of your notes?')) {
+      localStorage.removeItem('content')
+      localStorage.removeItem('notes')
+      console.log('this.$data', this.$data)
+      this.resetWindow()
+      console.log('this.$data', this.$data)
+    }
   },
   selectNote(id) {
     this.selectedId = id
