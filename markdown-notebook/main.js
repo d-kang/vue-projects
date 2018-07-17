@@ -1,6 +1,9 @@
 const data = function() {
   return {
     content: '',
+    notes: [],
+    title: '',
+    favorite: 'false',
   }
 }
 
@@ -16,18 +19,39 @@ const computed = {
 
 const watch = {
   content: 'saveNote',
+  notes: 'saveNotes',
 }
 
 const methods = {
   saveNote(val, oldVal) {
     console.log('new note:', val, 'old note:', oldVal)
+
     localStorage.setItem('content', val)
   },
   loadContent() {
     const content = localStorage.getItem('content')
-    this.content = content !== 'null' ? content : 'You can write in **markdown**'
+    const notes = JSON.parse(localStorage.getItem('notes'))
+    this.content = content || 'You can write in **markdown**'
+    this.notes = notes || []
+  },
+  addToDeck() {
+    const note = {
+      id: Math.ceil(Math.random() * 10000),
+      title: this.title,
+      content: this.content,
+      created: new Date(),
+      favorite: this.favorite
+    }
+    this.title = ''
+    this.notes.push(note)
+  },
+  saveNotes(val, oldVal) {
+    localStorage.setItem('notes', JSON.stringify(val))
+  },
+  purgeStorage()  {
+    localStorage.removeItem('content')
+    localStorage.removeItem('notes')
   }
-
 }
 
 const options = {
@@ -42,3 +66,6 @@ const options = {
 
 Vue.config.productionTip = false
 new Vue(options)
+
+
+

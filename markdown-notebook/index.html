@@ -17,6 +17,39 @@
     </section>
     <aside class="preview" v-html="notePreview"></aside>
 
+    <aside class="side-bar"></aside>
+    <input v-model="title" type="text" placeholder="title">
+    <button @click="addToDeck">save</button>
+    <select v-model="favorite" name="" id="">
+      <option value="false">false</option>
+      <option value="true">true</option>
+    </option></select>
+    <input type="radio" name="favorite" id="" value="favorite">
+
+    <!-- <button @click="purgeStorage">purge</button> -->
+    <section class="main">
+      <ul>
+        <li v-for="(n, i) in notes">
+          <div>
+            <strong><span>title:</span></strong>
+            <span>{{n.title}}</span>
+          </div>
+          <div>
+            <strong><span>content:</span></strong>
+            <span>{{n.content}}</span>
+          </div>
+          <div>
+            <strong><span>date:</span></strong>
+            <span>{{new Date(n.created).toLocaleTimeString()}}</span>
+          </div>
+          <div>
+            <strong><span>favorite:</span></strong>
+            <span>{{n.favorite}}</span>
+          </div>
+        </li>
+      </ul>
+
+    </section>
   </div>
 
   <script src="https://unpkg.com/marked"></script>
