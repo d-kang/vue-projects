@@ -51,7 +51,7 @@
           >
 
           <button @click="favoriteNote" title="Favorite Note">
-            <i v-if="selectedNote.favorite" class="material-icons">
+            <i class="material-icons" v-if="selectedNote.favorite">
               star
             </i>
             <i v-else class="material-icons">
@@ -62,15 +62,33 @@
             <i class="material-icons">delete</i>
           </button>
         </div>
-        <textarea v-model="selectedNote.content" placeholder="This is a note.">
-            </textarea>
+        <textarea v-model.trim="selectedNote.content" placeholder="This is a note.">
+        </textarea>
+        <div class="toolbar status-bar">
+          <span class="date">
+            <span class="label">Created</span>
+            <span class="value">{{ selectedNote.created | date }}</span>
+          </span>
+          <span class="lines">
+            <span class="label">Lines</span>
+            <span class="value">{{lineCount}}</span>
+          </span>
+          <span class="words">
+            <span class="label">Words</span>
+            <span class="value">{{wordCount}}</span>
+          </span>
+          <span class="characters">
+            <span class="label">Characters</span>
+            <span class="value">{{characterCount}}</span>
+          </span>
+        </div>
       </section>
       <aside class="preview" v-html="notePreview"></aside>
     </template>
 
-    <button @click="purgeStorage">purge</button>
+    <!-- <button @click="purgeStorage">purge</button> -->
   </div>
-
+  <script src="https://unpkg.com/moment"></script>
   <script src="https://unpkg.com/marked"></script>
   <script src="helpers.js"></script>
   <script src="main.js"></script>

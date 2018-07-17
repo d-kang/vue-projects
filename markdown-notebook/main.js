@@ -6,6 +6,12 @@ const data = function() {
   }
 }
 
+const filters = {
+  date(time) {
+    return moment(time).format('DD/MM/YY, HH:mm')
+  }
+}
+
 const computed = {
   notePreview() {
     return this.selectedId ? window.marked(this.selectedNote.content) : ''
@@ -28,6 +34,17 @@ const computed = {
     nonFavorites.sort((a, b) => a.id - b.id)
 
     return [...favorites, ...nonFavorites]
+  },
+  wordCount() {
+    const s = this.selectedNote.content.replace(/\s\s+/g, ' ').split(' ').length
+    console.log('s', s)
+    return s
+  },
+  characterCount() {
+    return this.selectedNote.content.length
+  },
+  lineCount() {
+    return this.selectedNote.content.split(/\r\n|\r|\n/).length
   }
 }
 
@@ -96,6 +113,7 @@ const options = {
   watch,
   methods,
   created,
+  filters,
 }
 
 Vue.config.productionTip = false
