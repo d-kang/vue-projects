@@ -1,15 +1,7 @@
-const getNotes = () => {
-  return JSON.parse(localStorage.getItem('notes')) || []
-}
-
-const getId = () => {
-  return parseInt(window.localStorage.getItem('id')) || null
-}
-
 const data = function() {
   return {
-    notes: getNotes(),
-    selectedId: getId(),
+    notes: helpers.getNotes(),
+    selectedId: helpers.getId(),
   }
 }
 
@@ -57,7 +49,7 @@ const methods = {
     this.selectedId = id
   },
   saveId() {
-    window.localStorage.setItem('id', this.selectedId)
+    window.localStorage.setItem('selected-id', this.selectedId)
   },
 }
 
