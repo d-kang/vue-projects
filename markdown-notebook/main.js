@@ -38,7 +38,6 @@ const methods = {
     this.notes.push(note)
   },
   saveNotes(val, oldVal) {
-    console.log('save note ran')
     localStorage.setItem('notes', JSON.stringify(val))
   },
   purgeStorage()  {
@@ -50,6 +49,16 @@ const methods = {
   },
   saveId() {
     window.localStorage.setItem('selected-id', this.selectedId)
+  },
+  deleteNote() {
+    this.notes = this.notes.filter(n => n.id !== this.selectedId)
+    this.selectedId = null
+  },
+  favoriteNote() {
+    // const note = this.notes.find(n => n.id === this.selectedId)
+    // note.favorite = !note.favorite
+    this.selectedNote.favorite = !this.selectedNote.favorite
+    // this.selectedNote.favorite = this.selectedNote.favorite ^ true
   },
 }
 

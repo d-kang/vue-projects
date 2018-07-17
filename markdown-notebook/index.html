@@ -24,14 +24,37 @@
           v-for="(n, i) in notes"
           @click="selectNote(n.id)"
           :class="{ selected: n === selectedNote }"
-          >
+        >
           {{n.title}}
+          <button @click="favoriteNote" style="float:right;">
+            <i class="material-icons">{{ notes[i].favorite ? 'star' : 'star_border' }}</i>
+          </button>
+
         </div>
       </div>
     </aside>
 
     <template v-if="selectedNote">
       <section class="main">
+        <div class="toolbar">
+          <input
+            v-model="selectedNote.title"
+            type="text"
+            placeholder="title"
+          >
+
+          <button @click="favoriteNote" title="Favorite Note">
+            <i v-if="selectedNote.favorite" class="material-icons">
+              star
+            </i>
+            <i v-else class="material-icons">
+              star_border
+            </i>
+          </button>
+          <button @click="deleteNote" title="Delete Note">
+            <i class="material-icons">delete</i>
+          </button>
+        </div>
         <textarea v-model="selectedNote.content" placeholder="This is a note.">
             </textarea>
       </section>
