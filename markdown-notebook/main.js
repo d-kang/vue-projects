@@ -1,9 +1,7 @@
 const data = function() {
   return {
-    content: '',
     notes: [],
-    title: '',
-    favorite: 'false',
+    selectedId: null,
   }
 }
 
@@ -13,8 +11,14 @@ const created = function() {
 
 const computed = {
   notePreview() {
-    return window.marked(this.content)
-  }
+    return this.selectedId ? window.marked(this.selectedNote.content) : ''
+  },
+  addButtonTitle() {
+    return `${this.notes.length} note(s) already`
+  },
+  selectedNote() {
+    return this.notes.find(n => n.id === this.selectedId)
+  },
 }
 
 const watch = {
@@ -34,13 +38,13 @@ const methods = {
     this.content = content || 'You can write in **markdown**'
     this.notes = notes || []
   },
-  addToDeck() {
+  addNote() {
     const note = {
       id: Math.ceil(Math.random() * 10000),
-      title: this.title,
-      content: this.content,
+      title: `New Note ${this.notes.length}`,
+      content: '** Hi! ** This notebook is using *markdown* for formatting!',
       created: new Date(),
-      favorite: this.favorite
+      favorite: false
     }
     this.title = ''
     this.notes.push(note)
@@ -51,6 +55,9 @@ const methods = {
   purgeStorage()  {
     localStorage.removeItem('content')
     localStorage.removeItem('notes')
+  },
+  selectNote(id) {
+    this.selectedId = id
   }
 }
 
