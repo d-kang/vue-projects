@@ -26,15 +26,15 @@
           :class="{ selected: n === selectedNote }"
         >
           {{n.title}}
-          <span v-if="n.id === selectedId" @click="favoriteNote" style="float:right">
-            <i v-if="n.favorite" class="material-icons">
+          <span v-if="n.id === selectedId" @click="favoriteNote">
+            <i  class="material-icons star-icon" v-if="n.favorite">
               star
             </i>
-            <i v-else class="material-icons">
+            <i class="material-icons star-icon" v-else>
               star_border
             </i>
           </span>
-          <i v-else-if="n.favorite" class="material-icons" style="float:right">
+          <i class="material-icons star-icon" v-else-if="n.favorite">
             star
           </i>
         </div>
@@ -48,6 +48,7 @@
             v-model="selectedNote.title"
             type="text"
             placeholder="title"
+            maxlength="25"
           >
 
           <button @click="favoriteNote" title="Favorite Note">
@@ -84,8 +85,9 @@
           <button @click="purgeStorage">purge</button>
         </div>
       </section>
-      <aside class="preview" v-html="notePreview"></aside>
     </template>
+
+    <aside class="preview" v-html="notePreview"></aside>
 
 
   </div>

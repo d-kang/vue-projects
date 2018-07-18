@@ -99,9 +99,8 @@ const methods = {
     if (confirm('Are you sure you want to delete all of your notes?')) {
       localStorage.removeItem('content')
       localStorage.removeItem('notes')
-      console.log('this.$data', this.$data)
+      localStorage.removeItem('selected-id')
       this.resetWindow()
-      console.log('this.$data', this.$data)
     }
   },
   selectNote(id) {

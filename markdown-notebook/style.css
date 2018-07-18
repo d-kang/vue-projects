@@ -181,17 +181,46 @@ h4 {
 
 .side-bar {
   height: 100vh;
-  overflow: auto;
+  max-width: 300px;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.status-bar {
-  bottom: 10px;
-  /* position: absolute; */
+
+
+#notebook {
   display: flex;
   flex-wrap: wrap;
 }
 
+.main {
+  display: flex;
+  flex-direction: column;
+}
 
+.status-bar {
+  bottom: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: auto;
+}
+
+
+.star-icon {
+  float: right;
+}
 
 [v-cloak] { display: none; }
+
+@media screen and (max-width: 1350px) {
+  .star-icon {
+    display:none;
+  }
+}
+
+/* @media screen and (max-width: 50000px) {
+  .side-bar {
+    display:none;
+  }
+} */
 
