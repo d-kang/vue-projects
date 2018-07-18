@@ -6,10 +6,14 @@
         :players="players"
         :current-player-index="currentPlayerIndex"
       />
-      <card
-        :def="testCard"
-        @play = "handlePlay"
-      />
+      <card :def="testCard"  @play="handlePlay" />
+      <transition name="hand">
+        <hand
+          v-if="!activeOverlay"
+          :cards="testHand"
+          @card-play="handlePlayCard"
+        />
+      </transition>
     </div>`
 
   const state = initializeState();
@@ -20,8 +24,8 @@
     template,
     data: state,
     methods: {
-      handlePlay() {
-        console.log('you played a card!')
+      handlePlayCard() {
+        console.log('3 handlePlayCard ran!')
       },
       createTestHand() {
         const cards = []
@@ -40,6 +44,12 @@
           def: this.CARDS[randomId],
         }
       },
+      testPlayCard(card) {
+        // Remove the card from player hand
+        const index = this.testHand.indexOf(card)
+        this.testHand.splice(index, 1)
+      },
+
     },
     created() {
       this.testHand = this.createTestHand()
@@ -53,7 +63,7 @@
   })
 
   window.addEventListener('resize', (e) => {
-    state.worldRatio = getWorldRatio()
+    state.worldRatio = gameState.getWorldRatio()
   })
 
 })();

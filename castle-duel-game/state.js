@@ -19,5 +19,6 @@ const initializeState = () => {
     currentPlayerIndex: Math.round(Math.random()),
     CARDS,
     testHand: [],
+    activeOverlay: null,
   }
 }

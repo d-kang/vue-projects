@@ -2,7 +2,7 @@
   const template = `
     <div class="card" :class="'type-' + def.type" @click="play">
       <div class="title">{{def.title}}</div>
-      <img class="separator" src="svg/card-separator.svg" alt=""/>
+      <img class="separator" src="svg/card-separator.svg" alt="" />
       <div class="description">
         <div v-html="def.description"></div>
       </div>
@@ -11,20 +11,14 @@
   `
   Vue.component('Card', {
     template,
-    data() {
-      return {}
-    },
     methods: {
       play() {
+        console.log('1 play ran in card.js')
         this.$emit('play')
       }
     },
     props: ['def'],
-    created() {
-      this.$on('play', (...args) => {
-        console.log('$on args', args)
-      })
-    }
+
 
   })
 
