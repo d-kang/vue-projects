@@ -33,7 +33,6 @@ body {
   float: left;
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
 #notebook > * > * {
@@ -186,8 +185,6 @@ h4 {
   overflow-y: auto;
 }
 
-
-
 #notebook {
   display: flex;
   flex-wrap: wrap;
@@ -218,9 +215,4 @@ h4 {
   }
 }
 
-/* @media screen and (max-width: 50000px) {
-  .side-bar {
-    display:none;
-  }
-} */
 
