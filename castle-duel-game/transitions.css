@@ -1,4 +1,5 @@
-/* .hand-enter-active,
+/* show hide player hand */
+.hand-enter-active,
 .hand-leave-active {
   transition: opacity .5s;
 }
@@ -27,4 +28,37 @@
 .hand-enter .card,
 .hand-leave-to .card {
   margin: 0 -100px;
-} */
+}
+
+/*  */
+.card-move {
+  /* Used for enter, move and mouse over animations */
+  transition: all transform .3s;
+}
+/* enter animation */
+.card-enter {
+  opacity: 0;
+  /* slide from the right */
+  transform: scale(.8) translateX(100px);
+}
+
+/* leave animation */
+.card-leave-active {
+  /* we need different timings or the leave tranistion */
+  transition: all 1s, opacity .5s .5s;
+  /* keep in same horizontal position */
+  position: absolute;
+  /* make it painted over the other cards */
+  z-index: 10;
+  /* unclickable during the transition */
+  pointer-events: none;
+}
+
+.card-leave-to {
+  opacity: 0;
+  /* zoom the card upwards */
+  transform: translateX(-106px) translateY(-300px) scale(1.5);
+}
+
+
+

@@ -2,7 +2,9 @@
   const template = `
     <div class="hand">
       <div class="wrapper">
-        <card v-for="(c, i) in cards" :key="i" :def="c.def" @play="handlePlay(c)" />
+        <transition-group name="card" class="cards">
+          <card v-for="(c, i) in cards" :key="c.uid" :def="c.def" @play-event="handlePlay(c)" />
+        </transition-group>
       </div>
     </div>
   `
@@ -11,8 +13,8 @@
     props: ['cards'],
     methods: {
       handlePlay(card) {
-        console.log('2 handle play ran in hand.js', card)
-        this.$emit('card-play', card)
+        console.log('2. handlePlay');
+        this.$emit('card-play-event', card)
       },
     },
   })

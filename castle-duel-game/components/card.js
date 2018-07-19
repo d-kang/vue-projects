@@ -13,13 +13,12 @@
     template,
     methods: {
       play() {
-        console.log('1 play ran in card.js')
-        this.$emit('play')
+        console.log('1. play');
+        this.$emit('play-event')
+        return ''
       }
     },
     props: ['def'],
-
-
   })
 
 })()

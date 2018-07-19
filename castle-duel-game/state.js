@@ -11,14 +11,30 @@ const gameState = {
 // let cardUid = 0
 // let currentPlayingCard = null
 
+const createPlayer = (name) => {
+  return {
+    name,
+    food: 10,
+    health: 10,
+    // Is skipping is next turn
+    skipTurn: false,
+    // Skiped turn last time
+    skippedTurn: false,
+    hand: [],
+    lastPlayedCardId: null,
+    dead: false,
+  }
+}
+
 const initializeState = () => {
   return {
     worldRatio: utils.getWorldRatio(),
     turn: 1,
-    players: [{ name: 'Anonymous Aardvark '}, { name: 'Spontaneous Spider' }],
+    players: [createPlayer('Anonymous Aardvark'), createPlayer('Spontaneous Spider')],
     currentPlayerIndex: Math.round(Math.random()),
     CARDS,
     testHand: [],
     activeOverlay: null,
+    lastPlayedCard: null,
   }
 }
