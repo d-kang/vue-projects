@@ -20,26 +20,26 @@
 
 }
 
-.app-container {
-  display: flex;
-  flex-flow: column;
-  height: 100%;
-}
+// .app-container {
+//   display: flex;
+//   flex-flow: column;
+//   height: 100%;
+// }
 
-.nav {
-  flex: 0 1 auto;
+// .nav {
+  // flex: 0 1 auto;
   /* The above is shorthand for:
   flex-grow: 0,
   flex-shrink: 1,
   flex-basis: auto
   */
-}
+// }
 
-.content {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-}
+// .content {
+  // flex: 1 1 auto;
+  // display: flex;
+  // flex-direction: column;
+// }
 
 .nav {
   text-align: center;

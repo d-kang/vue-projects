@@ -1,18 +1,14 @@
 <template>
-  <div>
-    <hello-world/>
+  <div class="markdown_container">
+    <MarkdownNotebook />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import HelloWorld from "@/components/markdown_preview/MarkdownNotebook.vue";
-
+import MarkdownNotebook from '@/components/markdown_notebook/MarkdownNotebook.vue';
 export default {
-  name: "MarkdownPreview",
-  components: {
-    HelloWorld
-  }
+  name: 'Markdown',
+  components: { MarkdownNotebook },
 };
-
 </script>

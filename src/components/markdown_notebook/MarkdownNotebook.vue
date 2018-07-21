@@ -219,8 +219,8 @@ const methods = {
   },
 };
 
-const options = {
-  name: 'Notebook',
+export default {
+  name: 'markdown',
   data,
   computed,
   watch,
@@ -228,9 +228,6 @@ const options = {
   created,
   filters,
 };
-
-export default options;
-
 
 </script>
 
@@ -271,7 +268,6 @@ textarea {
   font-size: inherit;
   line-height: inherit;
   box-sizing: border-box;
-  /* outline: none !important; */
 }
 
 button {
@@ -321,7 +317,6 @@ font-awesome-icon {
 .notebook {
   flex-grow: 1;
   height: 100%;
-  // flex-flow: row;
   display: flex;
   justify-content: space-between;
 }
@@ -374,7 +369,6 @@ textarea, .notes, .preview {
   padding: 15px;
   margin-right: 50px;
   max-width: 40%;
-  // box-sizing: border-box;
   border-left: solid 4px #f8f8f8;
 
   p:first-child {

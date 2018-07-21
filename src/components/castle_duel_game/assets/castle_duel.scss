@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css?family=Signika+Negative:600');
 .h-box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -17,7 +18,17 @@
   flex: auto 0 0
 }
 
-body {
+.castle-duel-game {
+  margin: 0;
+  font-family: 'Signika Negative', sans-serif;
+  background: #6eabff;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none
+}
+#castle-duel-game {
   margin: 0;
   font-family: 'Signika Negative', sans-serif;
   background: #6eabff;
