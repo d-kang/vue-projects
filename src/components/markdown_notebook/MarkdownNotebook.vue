@@ -150,28 +150,37 @@ const computed = {
 };
 
 const methods = {
-  setNoteNumber() {
-    let last = -1;
-    this.notes.forEach(n => {
-      if (n.id > last) {
-        last = n.id;
-      }
-    });
-    this.noteNumber = last + 1;
-  },
   addNote() {
+    const itemNumber = JSON.parse(window.localStorage.getItem('noteNumber')) + 1
+    window.localStorage.setItem('noteNumber', itemNumber)
     const note = {
-      id: this.noteNumber,
-      title: `New Note ${this.notes.length}`,
+      id: itemNumber,
+      title: `New Note ${itemNumber}`,
       content: '** Hi! ** This notebook is using *markdown* for formatting!',
       created: new Date(),
       favorite: false,
     };
-    this.selectedId = this.noteNumber;
-    this.noteNumber++;
+    this.selectedId = itemNumber;
     this.title = '';
     this.notes.push(note);
   },
+  // addNote() {
+  //   const itemNumber = window.localStorage.getItem('noteNumber') + 1
+  //   window.localStorage.setItem('noteNumber', itemNumber)
+  //   const note = {
+  //     id: this.noteNumber,
+  //     title: `New Note ${this.notes.length}`,
+  //     content: '** Hi! ** This notebook is using *markdown* for formatting!',
+  //     created: new Date(),
+  //     updated: new Date(),
+  //     favorite: false,
+  //   };
+  //   this.selectedId = this.noteNumber;
+  //   this.noteNumber++;
+  //   this.title = '';
+
+  //   this.notes.push(note);
+  // },
   saveNotes(val, oldVal) {
     window.localStorage.setItem('notes', JSON.stringify(val));
   },
@@ -185,18 +194,25 @@ const methods = {
       window.localStorage.removeItem('content');
       window.localStorage.removeItem('notes');
       window.localStorage.removeItem('selected-id');
+      window.localStorage.removeItem('noteNumber');
       this.resetWindow();
     }
   },
   selectNote(id) {
     this.selectedId = id;
+    this.stack.push(this.selectedId);
   },
   saveId() {
     window.localStorage.setItem('selected-id', this.selectedId);
   },
   deleteNote() {
     this.notes = this.notes.filter(n => n.id !== this.selectedId);
-    this.selectedId = null;
+
+    if (this.sortedNotes.length > 0) {
+      this.selectedId = this.sortedNotes[this.sortedNotes.length - 1].id
+    } else {
+      this.selectedId = null
+    }
   },
   favoriteNote() {
     this.selectedNote.favorite = !this.selectedNote.favorite;
@@ -216,9 +232,6 @@ export default {
       deep: true,
     },
     selectedId: 'saveId',
-  },
-  created() {
-    this.setNoteNumber();
   },
   filters: {
     date(time) {
