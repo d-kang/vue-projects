@@ -1,5 +1,5 @@
 <template>
-  <div id="castle-duel-game">
+  <div class="castle-duel-game">
     <Topbar
       :turn="turn"
       :players="players"

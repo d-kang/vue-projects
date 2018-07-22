@@ -2,7 +2,7 @@
   <div class="top-bar" :class="'player-' + currentPlayerIndex">
     <div class="player p0">{{ players[0].name }}</div>
     <div class="turn-counter">
-      <img class="arrow" src="svg/turn.svg" />
+      <TurnIcon class="arrow" />
       <div class="turn">Turn {{ turn }}</div>
     </div>
     <div class="player p1">{{ players[1].name }}</div>
@@ -11,7 +11,9 @@
 
 
 <script>
+import TurnIcon from '@/components/castle_duel_game/assets/svg/turn.svg'
 export default {
+  components: {TurnIcon},
   props: ['turn', 'players', 'currentPlayerIndex'],
 }
 </script>
