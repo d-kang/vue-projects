@@ -4,7 +4,7 @@
     <div class="side-bar">
       <div class="toolbar">
         <button @click="addNote" :title="addButtonTitle">
-          <font-awesome-icon icon='plus' /> Add note
+          <font-awesome-icon icon='plus' /> Add Note
         </button>
       </div>
       <div class="notes" v-cloak>
@@ -25,8 +25,8 @@
       </div>
     </div>
 
-    <div v-if="selectedNote">
-      <section class="main">
+    <div v-if="selectedNote" class="main">
+      <!-- <section > -->
         <div class="toolbar">
           <input
             v-model="selectedNote.title"
@@ -64,7 +64,7 @@
           </span>
           <button @click="purgeStorage">purge</button>
         </div>
-      </section>
+      <!-- </section> -->
     </div>
     <div class="preview" v-html="notePreview"></div>
 
@@ -95,6 +95,7 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 
 import SidebarButton from '@/components/SidebarButton.vue'
+import '@/components/markdown_notebook/mardown.scss'
 
 const faLoad = [fasStar, farStar, fasHeart, farHeart, faTrashAlt, faPlus]
 
@@ -107,6 +108,7 @@ const initialState = () => {
     notes: helpers.getNotes(),
     selectedId: helpers.getId(),
     noteNumber: 0,
+    stack: [],
   };
 };
 
@@ -228,184 +230,3 @@ export default {
 };
 
 </script>
-
-
-<style scoped lang="scss">
-a {
-  color: #40b883;
-}
-
-h1,
-h2,
-h3 {
-  margin: 10px 0 4px;
-  color: #40b883;
-}
-
-h1 {
-  font-size: 2em;
-}
-
-h2 {
-  font-size: 1.5em;
-}
-
-h3 {
-  font-size: 1.2em;
-}
-
-h4 {
-  font-size: 1.1em;
-  font-weight: normal;
-}
-
-button,
-input,
-textarea {
-  font-family: inherit;
-  font-size: inherit;
-  line-height: inherit;
-  box-sizing: border-box;
-}
-
-button {
-  border-radius: 3px;
-  border: none;
-  display: inline-block;
-  padding: 8px 12px;
-  cursor: pointer;
-  &:hover {
-    background: #63c89b;
-  }
-}
-
-button,
-.note.selected {
-  background: #40b883;
-  color: white;
-}
-
-button,
-input {
-  height: 34px;
-}
-
-input {
-  border: solid 2px #ade2ca;
-  border-radius: 3px;
-  padding: 6px 10px;
-  background: #f0f9f5;
-  color: #666;
-
-  &:focus {
-    border-color: #40b883;
-    background: white;
-    color: black;
-  }
-}
-
-font-awesome-icon {
-  font-size: 2rem;
-  line-height: 1;
-  vertical-align: middle;
-  margin: -3px;
-  padding-bottom: 1px;
-}
-
-.notebook {
-  flex-grow: 1;
-  height: 100%;
-  display: flex;
-  justify-content: space-between;
-}
-
-
-.side-bar {
-  max-width: 300px;
-  background: #f8f8f8;
-  width: 20%;
-  box-sizing: border-box;
-}
-
-.note {
-  padding: 5px;
-  cursor: pointer;
-  &:hover {
-    background: #ade2ca;
-  }
-  .icon {
-    float: right;
-  }
-}
-
-.status-bar {
-  color: #777;
-  > span {
-    margin-right: 6px;
-    white-space: nowrap;
-  }
-
-  .label {
-    color: #bbb;
-  }
-}
-
-textarea {
-  resize: none;
-  border: none;
-  box-sizing: border-box;
-  margin: 0 4px;
-  font-family: monospace;
-}
-
-textarea, .notes, .preview {
-  flex: auto 1 1;
-  overflow: auto;
-}
-
-.preview {
-  padding: 15px;
-  margin-right: 50px;
-  max-width: 40%;
-  border-left: solid 4px #f8f8f8;
-
-  p:first-child {
-    margin-top: 0;
-  }
-}
-
-
-.main {
-  display: flex;
-  flex-direction: column;
-  height: 100%
-}
-
-.status-bar {
-  bottom: 10px;
-  flex-wrap: wrap;
-  margin-top: auto;
-  display: flex;
-}
-
-.star-icon {
-  float: right;
-}
-
-.toolbar {
-  display: flex;
-  justify-content: flex-end;
-  :nth-child(1) {
-    margin-right: auto;
-  }
-}
-
-[v-cloak] { display: none; }
-
-// @media screen and (max-width: 1350px) {
-//   .star-icon {
-//     display:none;
-//   }
-// }
-
-</style>
