@@ -39,7 +39,6 @@ import Overlay from '@/components/castle_duel_game/Overlay.vue'
 import PlayerTurn from '@/components/castle_duel_game/overlay_content/PlayerTurn.vue'
 import LastPlay from '@/components/castle_duel_game/overlay_content/LastPlay.vue'
 import Gameover from '@/components/castle_duel_game/overlay_content/Gameover.vue'
-import Hello from '@/components/castle_duel_game/Hello.vue'
 
 import '@/assets/castle_duel/index.scss'
 import '@/assets/castle_duel/transitions.scss'
