@@ -1,5 +1,6 @@
 <template>
   <div class="notebook">
+    <SidebarButton />
     <div class="side-bar">
       <div class="toolbar">
         <button @click="addNote" :title="addButtonTitle">
@@ -77,6 +78,7 @@ import moment from 'moment'
 import marked from 'marked'
 import helpers from './helpers'
 import Vue from 'vue'
+
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
@@ -92,6 +94,8 @@ import {
   faTrashAlt
 } from '@fortawesome/free-regular-svg-icons'
 
+import SidebarButton from '@/components/SidebarButton.vue'
+
 const faLoad = [fasStar, farStar, fasHeart, farHeart, faTrashAlt, faPlus]
 
 library.add(faLoad)
@@ -104,16 +108,6 @@ const initialState = () => {
     selectedId: helpers.getId(),
     noteNumber: 0,
   };
-};
-
-const data = function() {
-  return initialState();
-};
-
-const filters = {
-  date(time) {
-    return moment(time).format('DD/MM/YY, HH:mm');
-  },
 };
 
 const computed = {
@@ -151,18 +145,6 @@ const computed = {
   lineCount() {
     return this.selectedNote.content.split(/\r\n|\r|\n/).length;
   },
-};
-
-const watch = {
-  notes: {
-    handler: 'saveNotes',
-    deep: true,
-  },
-  selectedId: 'saveId',
-};
-
-const created = function() {
-  this.setNoteNumber();
 };
 
 const methods = {
@@ -217,16 +199,32 @@ const methods = {
   favoriteNote() {
     this.selectedNote.favorite = !this.selectedNote.favorite;
   },
+
 };
 
 export default {
   name: 'markdown',
-  data,
+  components: { SidebarButton },
+  data() {
+    return initialState()
+  },
+  watch: {
+    notes: {
+      handler: 'saveNotes',
+      deep: true,
+    },
+    selectedId: 'saveId',
+  },
+  created() {
+    this.setNoteNumber();
+  },
+  filters: {
+    date(time) {
+      return moment(time).format('DD/MM/YY, HH:mm');
+    },
+  },
   computed,
-  watch,
   methods,
-  created,
-  filters,
 };
 
 </script>

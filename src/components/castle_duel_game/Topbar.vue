@@ -1,5 +1,6 @@
 <template>
   <div class="top-bar" :class="'player-' + currentPlayerIndex">
+    <SidebarButton />
     <div class="player p0">{{ players[0].name }}</div>
     <div class="turn-counter">
       <TurnIcon class="arrow" />
@@ -12,9 +13,10 @@
 
 <script>
 import TurnIcon from '@/assets/castle_duel/svg/turn.svg'
+import SidebarButton from '@/components/SidebarButton.vue'
 
 export default {
-  components: {TurnIcon},
+  components: { TurnIcon, SidebarButton },
   props: ['turn', 'players', 'currentPlayerIndex'],
 }
 </script>

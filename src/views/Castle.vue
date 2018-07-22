@@ -4,7 +4,6 @@
   </div>
 </template>
 
-
 <script>
 // @ is an alias to /src
 import CastleDuelGame from '@/components/castle_duel_game/CastleDuelGame.vue';
