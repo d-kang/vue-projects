@@ -30,19 +30,19 @@
 
 
 <script>
-import Topbar from '@/components/castle_duel_game/components/Topbar.vue'
-import Hand from '@/components/castle_duel_game/components/Hand.vue'
+import Topbar from '@/components/castle_duel_game/Topbar.vue'
+import Hand from '@/components/castle_duel_game/Hand.vue'
 import { initializeState, gameState, worldRatio } from './state'
 
 
-import Overlay from '@/components/castle_duel_game/components/Overlay.vue'
-import PlayerTurn from '@/components/castle_duel_game/components/overlay_content/PlayerTurn.vue'
-import LastPlay from '@/components/castle_duel_game/components/overlay_content/LastPlay.vue'
-import Gameover from '@/components/castle_duel_game/components/overlay_content/Gameover.vue'
-import Hello from '@/components/castle_duel_game/components/Hello.vue'
+import Overlay from '@/components/castle_duel_game/Overlay.vue'
+import PlayerTurn from '@/components/castle_duel_game/overlay_content/PlayerTurn.vue'
+import LastPlay from '@/components/castle_duel_game/overlay_content/LastPlay.vue'
+import Gameover from '@/components/castle_duel_game/overlay_content/Gameover.vue'
+import Hello from '@/components/castle_duel_game/Hello.vue'
 
-import '@/components/castle_duel_game/assets/castle_duel.scss'
-import '@/components/castle_duel_game/assets/transitions.scss'
+import '@/assets/castle_duel/index.scss'
+import '@/assets/castle_duel/transitions.scss'
 
 const methods = {
   handlePlayCard(card) {
@@ -113,5 +113,4 @@ window.addEventListener('resize', e => {
   *       which we will also use as a dynamic CSS class
   */
 </script>
-
 

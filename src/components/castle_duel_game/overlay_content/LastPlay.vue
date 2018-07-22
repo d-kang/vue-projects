@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import Card from '@/components/castle_duel_game/components/Card.vue'
-import utils from '../../utils'
+import Card from '@/components/castle_duel_game/Card.vue'
+import utils from '../utils'
 /* overlay-content-last-play */
 export default {
   components: { Card },

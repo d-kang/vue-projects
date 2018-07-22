@@ -1,6 +1,6 @@
 <template>
-  <div class="castle-duel-game">
-    <CastleDuelGame class="castle-duel-game" />
+  <div>
+    <CastleDuelGame />
   </div>
 </template>
 
@@ -16,3 +16,4 @@ export default {
   },
 };
 </script>
+

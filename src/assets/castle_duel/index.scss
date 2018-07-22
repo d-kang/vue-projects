@@ -19,9 +19,10 @@
 }
 
 .castle-duel-game {
+  height: 100vh;
   margin: 0;
   font-family: 'Signika Negative', sans-serif;
-  // background: #6eabff;
+  background: #6eabff;
   font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -461,3 +462,4 @@
 .player-result.defeated span {
   color: #b52a2a
 }
+

@@ -11,7 +11,8 @@
 
 
 <script>
-import TurnIcon from '@/components/castle_duel_game/assets/svg/turn.svg'
+import TurnIcon from '@/assets/castle_duel/svg/turn.svg'
+
 export default {
   components: {TurnIcon},
   props: ['turn', 'players', 'currentPlayerIndex'],
