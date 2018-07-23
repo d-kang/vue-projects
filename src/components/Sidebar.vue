@@ -10,7 +10,7 @@
   height: 100%;
   width: 160px;
   position: fixed;
-  z-index: 200;
+  z-index: 2;
   top: 0;
   left: 0;
   background-color: rgb(242, 242, 242);

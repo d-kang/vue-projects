@@ -57,7 +57,7 @@ export default {
   // display: inline;
   // bottom: -10px;
   // left: 1300px;
-  z-index: 1000;
+  z-index: 100;
   background-position: right 10px top 9px;
   height: 40px;
 	margin-top: 10px;

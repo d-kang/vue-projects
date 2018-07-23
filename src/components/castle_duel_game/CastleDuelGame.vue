@@ -1,5 +1,6 @@
 <template>
   <div class="castle-duel-game">
+    <SidebarButton />
     <Topbar
       :turn="turn"
       :players="players"
@@ -13,23 +14,18 @@
       />
     </transition>
 
-    <!-- <overlay>
-      <PlayerTurn :player="players[0]" />
-    </overlay> -->
-
-    <!-- <overlay>
-      <LastPlay :opponent="players[1]"/>
-    </overlay>
-
-    <overlay>
-      <Gameover :players="players" />
-    </overlay> -->
+    <!-- <Overlay v-if="activeOverlay">
+      <OverlayContentPlayerTurn v-if="activeOverlay === 'playerTurn'" />
+      <OverlayContentLastPlay v-else-if="activeOverlay === 'last-play'" />
+      <OverlayContentGameOver v-else-if="activeOverlay === 'game-over'" />
+    </Overlay> -->
 
   </div>
 </template>
 
 
 <script>
+import SidebarButton from '@/components/SidebarButton.vue'
 import Topbar from '@/components/castle_duel_game/Topbar.vue'
 import Hand from '@/components/castle_duel_game/Hand.vue'
 import { initializeState, gameState, worldRatio } from './state'
@@ -80,7 +76,15 @@ const initialState = initializeState();
 
 export default {
   name: 'CastleDuel',
-  components: { Topbar, Hand, Overlay, PlayerTurn, LastPlay, Gameover },
+  components: {
+    Topbar,
+    Hand,
+    Overlay,
+    PlayerTurn,
+    LastPlay,
+    Gameover,
+    SidebarButton,
+  },
   data: initialState,
   methods,
   created() {
