@@ -17,7 +17,6 @@ export default {
   props: ['cards'],
   methods: {
     handlePlay(card) {
-      console.log('2. handlePlay');
       this.$emit('card-play-event', card)
     },
   },

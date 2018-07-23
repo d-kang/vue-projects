@@ -14,7 +14,6 @@
 export default {
   methods: {
     play() {
-      console.log('1. play');
       this.$emit('play-event')
       return ''
     }

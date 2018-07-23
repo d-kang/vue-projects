@@ -20,10 +20,6 @@ import Sidebar from '@/components/Sidebar.vue'
 
 export default {
   components: { Sidebar },
-  created() {
-    console.log('this', this)
-    console.log('this.$store', this.$store)
-  },
 }
 </script>
 

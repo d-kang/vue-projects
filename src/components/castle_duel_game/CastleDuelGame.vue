@@ -14,11 +14,11 @@
       />
     </transition>
 
-    <!-- <Overlay v-if="activeOverlay">
+    <Overlay v-if="activeOverlay">
       <OverlayContentPlayerTurn v-if="activeOverlay === 'playerTurn'" />
       <OverlayContentLastPlay v-else-if="activeOverlay === 'last-play'" />
       <OverlayContentGameOver v-else-if="activeOverlay === 'game-over'" />
-    </Overlay> -->
+    </Overlay>
 
   </div>
 </template>
@@ -41,7 +41,6 @@ import '@/assets/castle_duel/transitions.scss'
 
 const methods = {
   handlePlayCard(card) {
-    console.log('3. handlePlayCard');
     this.testPlayCard(card);
   },
   createTestHand() {
@@ -63,7 +62,6 @@ const methods = {
   },
   testPlayCard(card) {
     // Remove the card from player hand
-    console.log('3. testPlayCard');
     const index = this.testHand.indexOf(card);
     this.lastPlayedCard = this.testHand.splice(index, 1)[0];
   },

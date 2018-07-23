@@ -136,9 +136,10 @@ const computed = {
     return [...favorites, ...nonFavorites];
   },
   wordCount() {
-    const s = this.selectedNote.content.replace(/\s\s+/g, ' ').split(' ')
+    const s = this.selectedNote.content
+      .replace(/\s\s+/g, ' ')
+      .split(' ')
       .length;
-    console.log('s', s);
     return s;
   },
   characterCount() {

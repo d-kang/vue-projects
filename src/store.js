@@ -10,7 +10,6 @@ export default new Vuex.Store({
   mutations: {
     flipSidebar(state) {
       state.showSidebar = !state.showSidebar;
-      console.log('flippen sidebar');
     },
   },
   actions: {},

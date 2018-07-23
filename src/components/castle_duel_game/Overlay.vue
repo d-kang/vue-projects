@@ -11,7 +11,6 @@
 export default {
   methods: {
     handleClick() {
-      console.log('click ran Overlay');
       this.$emit('close');
     },
   },
